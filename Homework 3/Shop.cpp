@@ -15,7 +15,7 @@ string random_action_guardian();
 
 
 int main() {
-    list<string> items = { "Молоко - 50грн", "Хліб - 20 грн","Масло - 90 грн" };
+    list<string> items = { "РњРѕР»РѕРєРѕ - 50РіСЂРЅ", "РҐР»С–Р± - 20 РіСЂРЅ","РњР°СЃР»Рѕ - 90 РіСЂРЅ" };
     int bal, shop_bal;
     string first_ext;
     int milk, bread, butter;
@@ -26,12 +26,12 @@ int main() {
     shop_bal = 1000;
     butter = 3;
     bal = 1000;
-    cout << "Виберіть дію: \n";
-    cout << "1. Купити товар \n";
-    cout << "2. Поскаржитись \n";
-    cout << "3. Повернення товару \n";
-    cout << "4. Вхід в акаунт\n";
-    cout << "Введіть номер дії: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ РґС–СЋ: \n";
+    cout << "1. РљСѓРїРёС‚Рё С‚РѕРІР°СЂ \n";
+    cout << "2. РџРѕСЃРєР°СЂР¶РёС‚РёСЃСЊ \n";
+    cout << "3. РџРѕРІРµСЂРЅРµРЅРЅСЏ С‚РѕРІР°СЂСѓ \n";
+    cout << "4. Р’С…С–Рґ РІ Р°РєР°СѓРЅС‚\n";
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ РґС–С—: \n";
     cin >> first_ext;
     if (first_ext == "1") {
         buy(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
@@ -55,50 +55,50 @@ int buy(list<string>& items, int& bal, int& milk, int& bread, int& butter, int& 
     int choose_item;
     string answer;
     int i = 0;
-    cout << "Виберіть товар: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ С‚РѕРІР°СЂ: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
-    cout << "Введіть кількість товару: \n";
+    cout << "Р’РІРµРґС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ: \n";
     cin >> count;
     if (choose_item == 1) {
         bal -= (50 * count);
         shop_bal += (50 * count);
         milk_user += count;
         milk -= count;
-        cout << "Карта чи готівка? \n";
-        cout << "Пакет потрібний? \n";
-        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
+        cout << "РљР°СЂС‚Р° С‡Рё РіРѕС‚С–РІРєР°? \n";
+        cout << "РџР°РєРµС‚ РїРѕС‚СЂС–Р±РЅРёР№? \n";
+        cout << "Р”СЏРєСѓСЋ Р·Р° РїРѕРєСѓРїРєСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
     }
     else if (choose_item == 2) {
         bal -= (20 * count);
         shop_bal += (20 * count);
         bread_user += count;
         bread -= count;
-        cout << "Карта чи готівка? \n";
-        cout << "Пакет потрібний? \n";
-        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
+        cout << "РљР°СЂС‚Р° С‡Рё РіРѕС‚С–РІРєР°? \n";
+        cout << "РџР°РєРµС‚ РїРѕС‚СЂС–Р±РЅРёР№? \n";
+        cout << "Р”СЏРєСѓСЋ Р·Р° РїРѕРєСѓРїРєСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
     }
     else if (choose_item == 3) {
         bal -= (90 * count);
         shop_bal += (90 * count);
         butter_user += count;
         butter -= count;
-        cout << "Карта чи готівка? \n";
-        cout << "Пакет потрібний? \n";
-        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
+        cout << "РљР°СЂС‚Р° С‡Рё РіРѕС‚С–РІРєР°? \n";
+        cout << "РџР°РєРµС‚ РїРѕС‚СЂС–Р±РЅРёР№? \n";
+        cout << "Р”СЏРєСѓСЋ Р·Р° РїРѕРєСѓРїРєСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
     }
     else {
-        cout << "Невірний товар";
+        cout << "РќРµРІС–СЂРЅРёР№ С‚РѕРІР°СЂ";
     }
-    cout << "Хочете повернути товар?";
+    cout << "РҐРѕС‡РµС‚Рµ РїРѕРІРµСЂРЅСѓС‚Рё С‚РѕРІР°СЂ?";
     cin >> answer;
-    if (answer == "так") { //хотів зробити щоб ігнорувало регістер букв але не зміг зрозуміти як
+    if (answer == "С‚Р°Рє") { //С…РѕС‚С–РІ Р·СЂРѕР±РёС‚Рё С‰РѕР± С–РіРЅРѕСЂСѓРІР°Р»Рѕ СЂРµРіС–СЃС‚РµСЂ Р±СѓРєРІ Р°Р»Рµ РЅРµ Р·РјС–Рі Р·СЂРѕР·СѓРјС–С‚Рё СЏРє
         returned(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
     }
-    else if (answer == "Так") { //хотів зробити щоб ігнорувало регістер букв але не зміг зрозуміти як
+    else if (answer == "РўР°Рє") { //С…РѕС‚С–РІ Р·СЂРѕР±РёС‚Рё С‰РѕР± С–РіРЅРѕСЂСѓРІР°Р»Рѕ СЂРµРіС–СЃС‚РµСЂ Р±СѓРєРІ Р°Р»Рµ РЅРµ Р·РјС–Рі Р·СЂРѕР·СѓРјС–С‚Рё СЏРє
         returned(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
     }
     main();
@@ -108,41 +108,41 @@ int report(list<string>& items) {
     int choose_item;
     int i = 0;
     int ii = 0;
-    cout << "Виберіть товар для скарги: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ С‚РѕРІР°СЂ РґР»СЏ СЃРєР°СЂРіРё: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
     if (choose_item == 1) {
-        items.remove("Молоко - 50грн");
-        cout << "Товар виддалено! \n";
-        cout << "Оновлений список товарів! \n";
+        items.remove("РњРѕР»РѕРєРѕ - 50РіСЂРЅ");
+        cout << "РўРѕРІР°СЂ РІРёРґРґР°Р»РµРЅРѕ! \n";
+        cout << "РћРЅРѕРІР»РµРЅРёР№ СЃРїРёСЃРѕРє С‚РѕРІР°СЂС–РІ! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else if (choose_item == 2) {
-        items.remove("Хліб - 20 грн");
-        cout << "Товар виддалено! \n";
-        cout << "Оновлений список товарів! \n";
+        items.remove("РҐР»С–Р± - 20 РіСЂРЅ");
+        cout << "РўРѕРІР°СЂ РІРёРґРґР°Р»РµРЅРѕ! \n";
+        cout << "РћРЅРѕРІР»РµРЅРёР№ СЃРїРёСЃРѕРє С‚РѕРІР°СЂС–РІ! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else if (choose_item == 3) {
-        items.remove("Масло - 90 грн");
-        cout << "Товар виддалено! \n";
-        cout << "Оновлений список товарів! \n";
+        items.remove("РњР°СЃР»Рѕ - 90 РіСЂРЅ");
+        cout << "РўРѕРІР°СЂ РІРёРґРґР°Р»РµРЅРѕ! \n";
+        cout << "РћРЅРѕРІР»РµРЅРёР№ СЃРїРёСЃРѕРє С‚РѕРІР°СЂС–РІ! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else {
-        cout << "Невірний товар";
+        cout << "РќРµРІС–СЂРЅРёР№ С‚РѕРІР°СЂ";
     }
     main();
     return 0;
@@ -151,13 +151,13 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
     int count;
     int choose_item;
     int i = 0;
-    cout << "Виберіть товар для повернення: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ С‚РѕРІР°СЂ РґР»СЏ РїРѕРІРµСЂРЅРµРЅРЅСЏ: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
-    cout << "Введіть кількість товару : \n";
+    cout << "Р’РІРµРґС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ : \n";
     cin >> count;
     if (choose_item == 1) {
         if (count <= milk_user) {
@@ -165,10 +165,10 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (50 * count);
             milk_user -= count;
             milk += count;
-            cout << "Успішне повернення! \n Ваш баланс: " + bal;
+            cout << "РЈСЃРїС–С€РЅРµ РїРѕРІРµСЂРЅРµРЅРЅСЏ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
         }
         else {
-            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
+            cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
         }
     }
     else if (choose_item == 2) {
@@ -177,11 +177,11 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (20 * count);
             bread_user -= count;
             bread += count;
-            cout << "Успішне повернення! \n Ваш баланс: " + bal;
+            cout << "РЈСЃРїС–С€РЅРµ РїРѕРІРµСЂРЅРµРЅРЅСЏ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
 
         }
         else {
-            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
+            cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
         }
     }
     else if (choose_item == 3) {
@@ -190,15 +190,15 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (90 * count);
             butter_user -= count;
             butter += count;
-            cout << "Успішне повернення! \n Ваш баланс: " + bal;
+            cout << "РЈСЃРїС–С€РЅРµ РїРѕРІРµСЂРЅРµРЅРЅСЏ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
 
         }
         else {
-            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
+            cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " + bal;
         }
     }
     else {
-        cout << "Невірний товар";
+        cout << "РќРµРІС–СЂРЅРёР№ С‚РѕРІР°СЂ";
     }
     main();
     return 0;
@@ -208,16 +208,16 @@ string random_action() {
     int random = rand() % 3;
     string action;
     if (random == 0) {
-        action = "Поставка товарів";
+        action = "РџРѕСЃС‚Р°РІРєР° С‚РѕРІР°СЂС–РІ";
     }
     else if (random == 1) {
-        action = "Оплата оренди";
+        action = "РћРїР»Р°С‚Р° РѕСЂРµРЅРґРё";
     }
     else if (random == 2) {
-        action = "Виплата зарплати";
+        action = "Р’РёРїР»Р°С‚Р° Р·Р°СЂРїР»Р°С‚Рё";
     }
     else if (random == 3) {
-        action = "Планові перевірки";
+        action = "РџР»Р°РЅРѕРІС– РїРµСЂРµРІС–СЂРєРё";
     }
     return action;
 }
@@ -226,8 +226,8 @@ public:
 
 
     int documents() {
-        cout << "Документи на товар в нормі! \n";
-        cout << "Документи на приміщення в нормі! \n";
+        cout << "Р”РѕРєСѓРјРµРЅС‚Рё РЅР° С‚РѕРІР°СЂ РІ РЅРѕСЂРјС–! \n";
+        cout << "Р”РѕРєСѓРјРµРЅС‚Рё РЅР° РїСЂРёРјС–С‰РµРЅРЅСЏ РІ РЅРѕСЂРјС–! \n";
         return 0;
     };
     int workers_count;
@@ -237,20 +237,20 @@ int login(int& password, list<string>& items, int& bal, int& milk, int& bread, i
     int answer;
 
     int pass_answer;
-    cout << "Виберіть акаунт: \n";
-    cout << "1. Адміністратор \n";
-    cout << "2. Продавець \n";
-    cout << "3. Охоронець \n";
-    cout << "Введіть номер дії: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ Р°РєР°СѓРЅС‚: \n";
+    cout << "1. РђРґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂ \n";
+    cout << "2. РџСЂРѕРґР°РІРµС†СЊ \n";
+    cout << "3. РћС…РѕСЂРѕРЅРµС†СЊ \n";
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ РґС–С—: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "Введіть пароль: \n";
+        cout << "Р’РІРµРґС–С‚СЊ РїР°СЂРѕР»СЊ: \n";
         cin >> pass_answer;
         if (pass_answer == password) {
             admins(password);
         }
         else {
-            cout << "Неправильний пароль \n";
+            cout << "РќРµРїСЂР°РІРёР»СЊРЅРёР№ РїР°СЂРѕР»СЊ \n";
             main();
         };
     }
@@ -268,24 +268,24 @@ int admins(int& password) {
     int answer, admins_count, password_answer;
 
     admins.workers_count = 2;
-    cout << "Виберіть дію: \n";
-    cout << "1. Змінити к-сть адмінів \n";
-    cout << "2. Змінити пароль \n";
-    cout << "3. Поточні події \n";
-    cout << "4. Минулі події \n";
-    cout << "5. Майбутні події \n";
-    cout << "Введіть номер дії: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ РґС–СЋ: \n";
+    cout << "1. Р—РјС–РЅРёС‚Рё Рє-СЃС‚СЊ Р°РґРјС–РЅС–РІ \n";
+    cout << "2. Р—РјС–РЅРёС‚Рё РїР°СЂРѕР»СЊ \n";
+    cout << "3. РџРѕС‚РѕС‡РЅС– РїРѕРґС–С— \n";
+    cout << "4. РњРёРЅСѓР»С– РїРѕРґС–С— \n";
+    cout << "5. РњР°Р№Р±СѓС‚РЅС– РїРѕРґС–С— \n";
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ РґС–С—: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "Введіть нову кількість адмінів \n";
+        cout << "Р’РІРµРґС–С‚СЊ РЅРѕРІСѓ РєС–Р»СЊРєС–СЃС‚СЊ Р°РґРјС–РЅС–РІ \n";
         cin >> admins_count;
         admins.workers_count = admins_count;
     }
     else if (answer == 2) {
-        cout << "Введіть новий пароль: \n";
+        cout << "Р’РІРµРґС–С‚СЊ РЅРѕРІРёР№ РїР°СЂРѕР»СЊ: \n";
         cin >> password_answer;
         password = password_answer;
-        cout << "Новий пароль: " + password;
+        cout << "РќРѕРІРёР№ РїР°СЂРѕР»СЊ: " + password;
     }
     else if (answer == 3) {
         cout << random_action() + "\n";
@@ -304,76 +304,76 @@ int seller(list<string>& items, int& bal, int& milk, int& bread, int& butter, in
     sellers.workers_count = 5;
     int count, choose_item, answer;
     int i = 0;
-    cout << "Виберіть дію: \n";
-    cout << "1. Змінити к-сть адмінів \n";
-    cout << "2. Змінити пароль \n";
-    cout << "Введіть номер дії: \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ РґС–СЋ: \n";
+    cout << "1. Р—РјС–РЅРёС‚Рё Рє-СЃС‚СЊ Р°РґРјС–РЅС–РІ \n";
+    cout << "2. Р—РјС–РЅРёС‚Рё РїР°СЂРѕР»СЊ \n";
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ РґС–С—: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "Виберіть товар для продажі: \n";
+        cout << "Р’РёР±РµСЂС–С‚СЊ С‚РѕРІР°СЂ РґР»СЏ РїСЂРѕРґР°Р¶С–: \n";
         for (string item : items) {
             i++;
             cout << i << ". " << item << "\n";
         }
         cin >> choose_item;
-        cout << "Введіть кількість товару : \n";
+        cout << "Р’РІРµРґС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ : \n";
         cin >> count;
         if (choose_item == 1) {
             if (count <= milk_user) {
                 shop_bal += (90 * count);
                 milk -= count;
-                cout << "Успішний продаж! \n  Баланс магазину: " + shop_bal;
+                cout << "РЈСЃРїС–С€РЅРёР№ РїСЂРѕРґР°Р¶! \n  Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
             else {
-                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
+                cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
         }
         else if (choose_item == 2) {
             if (count <= bread) {
                 shop_bal += (20 * count);
                 bread -= count;
-                cout << "Успішний продаж! \n  Баланс магазину: " + shop_bal;
+                cout << "РЈСЃРїС–С€РЅРёР№ РїСЂРѕРґР°Р¶! \n  Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
             else {
-                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
+                cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
         }
         else if (choose_item == 3) {
             if (count <= bread) {
                 shop_bal += (90 * count);
                 butter -= count;
-                cout << "Успішний продаж! \n Баланс магазину: " + shop_bal;
+                cout << "РЈСЃРїС–С€РЅРёР№ РїСЂРѕРґР°Р¶! \n Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
             else {
-                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
+                cout << "РќРµРґРѕСЃС‚Р°С‚РЅСЊРѕ С‚РѕРІР°СЂСѓ! \n Р‘Р°Р»Р°РЅСЃ РјР°РіР°Р·РёРЅСѓ: " + shop_bal;
             }
         }
         else {
-            cout << "Невірний товар";
+            cout << "РќРµРІС–СЂРЅРёР№ С‚РѕРІР°СЂ";
         }
     }
     else if (answer == 2) {
         int item_choose, item_choose2;
-        cout << "Виберіть перший товар для обміну: \n";
+        cout << "Р’РёР±РµСЂС–С‚СЊ РїРµСЂС€РёР№ С‚РѕРІР°СЂ РґР»СЏ РѕР±РјС–РЅСѓ: \n";
         for (string item : items) {
             i++;
             cout << i << ". " << item << "\n";
         }
         cin >> item_choose;
-        cout << "Виберіть другий товар для обміну: \n";
+        cout << "Р’РёР±РµСЂС–С‚СЊ РґСЂСѓРіРёР№ С‚РѕРІР°СЂ РґР»СЏ РѕР±РјС–РЅСѓ: \n";
         cin >> item_choose2;
         if (item_choose == 1 && item_choose == 2) {
             if (milk > 1) {
                 milk -= 1;
                 bread += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
         }
         else if (item_choose == 1 && item_choose == 3) {
             if (milk > 1) {
                 milk -= 1;
                 butter += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
 
         }
@@ -381,32 +381,32 @@ int seller(list<string>& items, int& bal, int& milk, int& bread, int& butter, in
             if (bread > 1) {
                 bread -= 1;
                 milk += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
         }
         else if (item_choose == 2 && item_choose == 3) {
             if (bread > 1) {
                 bread -= 1;
                 butter += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
         }
         else if (item_choose == 3 && item_choose == 1) {
             if (butter > 1) {
                 butter -= 1;
                 milk += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
         }
         else if (item_choose == 3 && item_choose == 2) {
             if (butter > 1) {
                 butter -= 1;
                 bread += 1;
-                cout << "Успішний обмін!";
+                cout << "РЈСЃРїС–С€РЅРёР№ РѕР±РјС–РЅ!";
             }
         }
         else {
-            cout << "Невірний один з товарів!";
+            cout << "РќРµРІС–СЂРЅРёР№ РѕРґРёРЅ Р· С‚РѕРІР°СЂС–РІ!";
         }
     }
 
@@ -418,16 +418,16 @@ string random_action_guardian() {
     int random = rand() % 3;
     string action;
     if (random == 0) {
-        action = "Крадіжка";
+        action = "РљСЂР°РґС–Р¶РєР°";
     }
     else if (random == 1) {
-        action = "Пошкодження товару";
+        action = "РџРѕС€РєРѕРґР¶РµРЅРЅСЏ С‚РѕРІР°СЂСѓ";
     }
     else if (random == 2) {
-        action = "Напад";
+        action = "РќР°РїР°Рґ";
     }
     else if (random == 3) {
-        action = "Нічого не відбувається";
+        action = "РќС–С‡РѕРіРѕ РЅРµ РІС–РґР±СѓРІР°С”С‚СЊСЃСЏ";
     }
     return action;
 }
@@ -445,14 +445,14 @@ int guardian() {
     int answer;
 
     guardians.workers_count = 3;
-    cout << "Виберіть дію: \n";
-    cout << "1. Слідкувати за подіями \n";
-    cout << "2. Переглядати ситуації \n";
+    cout << "Р’РёР±РµСЂС–С‚СЊ РґС–СЋ: \n";
+    cout << "1. РЎР»С–РґРєСѓРІР°С‚Рё Р·Р° РїРѕРґС–СЏРјРё \n";
+    cout << "2. РџРµСЂРµРіР»СЏРґР°С‚Рё СЃРёС‚СѓР°С†С–С— \n";
 
-    cout << "Введіть номер дії: \n";
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ РґС–С—: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "Ви слідкуєте за подіями! \n";
+        cout << "Р’Рё СЃР»С–РґРєСѓС”С‚Рµ Р·Р° РїРѕРґС–СЏРјРё! \n";
     }
     else if (answer == 2) {
         cout << random_action_guardian() + "\n";
