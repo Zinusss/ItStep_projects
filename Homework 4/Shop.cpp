@@ -1,7 +1,7 @@
-
 #include <iostream>
 #include <string>
 #include <list>
+#include <fstream>
 using namespace std;
 int buy(list<string>& items, int& bal, int& milk, int& bread, int& butter, int& milk_user, int& bread_user, int& butter_user, int& shop_bal);
 int report(list<string>& items);
@@ -16,7 +16,7 @@ string random_action_guardian();
 
 
 int main() {
-    list<string> items = { "?????? - 50???", "???? - 20 ???","????? - 90 ???" };
+    list<string> items = { "Молоко - 50грн", "Хліб - 20 грн","Масло - 90 грн" };
     int bal, shop_bal;
     string first_ext;
     int milk, bread, butter;
@@ -27,12 +27,12 @@ int main() {
     shop_bal = 1000;
     butter = 3;
     bal = 1000;
-    cout << "???????? ???: \n";
-    cout << "1. ?????? ????? \n";
-    cout << "2. ???????????? \n";
-    cout << "3. ?????????? ?????? \n";
-    cout << "4. ???? ? ??????\n";
-    cout << "??????? ????? ???: \n";
+    cout << "Виберіть дію: \n";
+    cout << "1. Купити товар \n";
+    cout << "2. Поскаржитись \n";
+    cout << "3. Повернення товару \n";
+    cout << "4. Вхід в акаунт\n";
+    cout << "Введіть номер дії: \n";
     cin >> first_ext;
     if (first_ext == "1") {
         buy(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
@@ -54,52 +54,117 @@ int main() {
 int buy(list<string>& items, int& bal, int& milk, int& bread, int& butter, int& milk_user, int& bread_user, int& butter_user, int& shop_bal) {
     int count;
     int choose_item;
+
     string answer;
     int i = 0;
-    cout << "???????? ?????: \n";
+    cout << "Виберіть товар: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
-    cout << "??????? ????????? ??????: \n";
+    cout << "Введіть кількість товару: \n";
     cin >> count;
     if (choose_item == 1) {
+        ofstream file1("bill.txt");
+        string out;
         bal -= (50 * count);
         shop_bal += (50 * count);
         milk_user += count;
         milk -= count;
-        cout << "????? ?? ???????? \n";
-        cout << "????? ?????????? \n";
-        cout << "????? ?? ???????! \n ??? ??????: " + bal;
+        cout << "Карта чи готівка? \n";
+        cout << "Пакет потрібний? \n";
+        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
+            if(!file1.is_open()){
+                return 1;
+                cout << "Помилка чеку! \n";
+            }
+        file1 << "Молоко \n";
+        file1 << count + " шт. \n";
+        file1 << 50 * count + "грн. \n";
+        file1.close();
+        ifstream file("bill.txt");
+            if(!file.is_open()){
+                return 1;
+                cout << "Помилка чеку! \n";
+            }
+
+        while (getline(file, out)){
+            cout << out << endl;
+        }
+        cout << out << endl;
+        file.close();
+
     }
     else if (choose_item == 2) {
+        ofstream file1("bill.txt");
+        string out;
         bal -= (20 * count);
         shop_bal += (20 * count);
         bread_user += count;
         bread -= count;
-        cout << "????? ?? ???????? \n";
-        cout << "????? ?????????? \n";
-        cout << "????? ?? ???????! \n ??? ??????: " + bal;
+        cout << "Карта чи готівка? \n";
+        cout << "Пакет потрібний? \n";
+        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
+        if(!file1.is_open()){
+            return 1;
+            cout << "Помилка чеку! \n";
+        }
+        file1 << "Хліб \n";
+        file1 << count + " шт. \n";
+        file1 << 20 * count + "грн. \n";
+        file1.close();
+        ifstream file("bill.txt");
+        if(!file.is_open()){
+            return 1;
+            cout << "Помилка чеку! \n";
+        }
+
+        while (getline(file, out)){
+            cout << out << endl;
+        }
+        cout << out << endl;
+        file.close();
     }
     else if (choose_item == 3) {
+        ofstream file1("bill.txt");
+        string out;
+        if(!file1.is_open()){
+            return 1;
+            cout << "Помилка чеку! \n";
+        }
+        file1 << "Масло \n";
+        file1 << count + " шт. \n";
+        file1 << 90 * count + "грн. \n";
+        file1.close();
+        ifstream file("bill.txt");
+        if(!file.is_open()){
+            return 1;
+            cout << "Помилка чеку! \n";
+        }
+
+        while (getline(file, out)){
+            cout << out << endl;
+        }
+        cout << out << endl;
+        file.close();
         bal -= (90 * count);
         shop_bal += (90 * count);
         butter_user += count;
         butter -= count;
-        cout << "????? ?? ???????? \n";
-        cout << "????? ?????????? \n";
-        cout << "????? ?? ???????! \n ??? ??????: " + bal;
+        cout << "Карта чи готівка? \n";
+        cout << "Пакет потрібний? \n";
+        cout << "Дякую за покупку! \n Ваш баланс: " + bal;
     }
     else {
-        cout << "???????? ?????";
+        cout << "Невірний товар";
     }
-    cout << "?????? ????????? ??????";
+    cout << "Хочете повернути товар?";
     cin >> answer;
-    if (answer == "???") { //????? ??????? ??? ?????????? ???????? ???? ??? ?? ???? ????????? ??
+    if (answer == "так") { //хотів зробити щоб ігнорувало регістер букв але не зміг зрозуміти як
         returned(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
     }
-    else if (answer == "???") { //????? ??????? ??? ?????????? ???????? ???? ??? ?? ???? ????????? ??
+    else if (answer == "Так") { //хотів зробити щоб ігнорувало регістер букв але не зміг зрозуміти як
         returned(items, bal, milk, bread, butter, milk_user, bread_user, butter_user, shop_bal);
     }
     main();
@@ -109,41 +174,41 @@ int report(list<string>& items) {
     int choose_item;
     int i = 0;
     int ii = 0;
-    cout << "???????? ????? ??? ??????: \n";
+    cout << "Виберіть товар для скарги: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
     if (choose_item == 1) {
-        items.remove("?????? - 50???");
-        cout << "????? ?????????! \n";
-        cout << "????????? ?????? ???????! \n";
+        items.remove("Молоко - 50грн");
+        cout << "Товар виддалено! \n";
+        cout << "Оновлений список товарів! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else if (choose_item == 2) {
-        items.remove("???? - 20 ???");
-        cout << "????? ?????????! \n";
-        cout << "????????? ?????? ???????! \n";
+        items.remove("Хліб - 20 грн");
+        cout << "Товар виддалено! \n";
+        cout << "Оновлений список товарів! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else if (choose_item == 3) {
-        items.remove("????? - 90 ???");
-        cout << "????? ?????????! \n";
-        cout << "????????? ?????? ???????! \n";
+        items.remove("Масло - 90 грн");
+        cout << "Товар виддалено! \n";
+        cout << "Оновлений список товарів! \n";
         for (string item : items) {
             ii++;
             cout << ii << ". " << item << "\n";
         }
     }
     else {
-        cout << "???????? ?????";
+        cout << "Невірний товар";
     }
     main();
     return 0;
@@ -152,13 +217,13 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
     int count;
     int choose_item;
     int i = 0;
-    cout << "???????? ????? ??? ??????????: \n";
+    cout << "Виберіть товар для повернення: \n";
     for (string item : items) {
         i++;
         cout << i << ". " << item << "\n";
     }
     cin >> choose_item;
-    cout << "??????? ????????? ?????? : \n";
+    cout << "Введіть кількість товару : \n";
     cin >> count;
     if (choose_item == 1) {
         if (count <= milk_user) {
@@ -166,10 +231,10 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (50 * count);
             milk_user -= count;
             milk += count;
-            cout << "??????? ??????????! \n ??? ??????: " + bal;
+            cout << "Успішне повернення! \n Ваш баланс: " + bal;
         }
         else {
-            cout << "??????????? ??????! \n ??? ??????: " + bal;
+            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
         }
     }
     else if (choose_item == 2) {
@@ -178,11 +243,11 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (20 * count);
             bread_user -= count;
             bread += count;
-            cout << "??????? ??????????! \n ??? ??????: " + bal;
+            cout << "Успішне повернення! \n Ваш баланс: " + bal;
 
         }
         else {
-            cout << "??????????? ??????! \n ??? ??????: " + bal;
+            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
         }
     }
     else if (choose_item == 3) {
@@ -191,15 +256,15 @@ int returned(list<string>& items, int& bal, int& milk, int& bread, int& butter, 
             shop_bal -= (90 * count);
             butter_user -= count;
             butter += count;
-            cout << "??????? ??????????! \n ??? ??????: " + bal;
+            cout << "Успішне повернення! \n Ваш баланс: " + bal;
 
         }
         else {
-            cout << "??????????? ??????! \n ??? ??????: " + bal;
+            cout << "Недостатньо товару! \n Ваш баланс: " + bal;
         }
     }
     else {
-        cout << "???????? ?????";
+        cout << "Невірний товар";
     }
     main();
     return 0;
@@ -209,16 +274,16 @@ string random_action() {
     int random = rand() % 3;
     string action;
     if (random == 0) {
-        action = "???????? ???????";
+        action = "Поставка товарів";
     }
     else if (random == 1) {
-        action = "?????? ??????";
+        action = "Оплата оренди";
     }
     else if (random == 2) {
-        action = "??????? ????????";
+        action = "Виплата зарплати";
     }
     else if (random == 3) {
-        action = "??????? ?????????";
+        action = "Планові перевірки";
     }
     return action;
 }
@@ -227,8 +292,8 @@ public:
 
 
     int documents() {
-        cout << "????????? ?? ????? ? ?????! \n";
-        cout << "????????? ?? ?????????? ? ?????! \n";
+        cout << "Документи на товар в нормі! \n";
+        cout << "Документи на приміщення в нормі! \n";
         return 0;
     };
     int workers_count;
@@ -238,20 +303,20 @@ int login(int& password, list<string>& items, int& bal, int& milk, int& bread, i
     int answer;
 
     int pass_answer;
-    cout << "???????? ??????: \n";
-    cout << "1. ????????????? \n";
-    cout << "2. ????????? \n";
-    cout << "3. ????????? \n";
-    cout << "??????? ????? ???: \n";
+    cout << "Виберіть акаунт: \n";
+    cout << "1. Адміністратор \n";
+    cout << "2. Продавець \n";
+    cout << "3. Охоронець \n";
+    cout << "Введіть номер дії: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "??????? ??????: \n";
+        cout << "Введіть пароль: \n";
         cin >> pass_answer;
         if (pass_answer == password) {
             admins(password);
         }
         else {
-            cout << "???????????? ?????? \n";
+            cout << "Неправильний пароль \n";
             main();
         };
     }
@@ -269,24 +334,24 @@ int admins(int& password) {
     int answer, admins_count, password_answer;
 
     admins.workers_count = 2;
-    cout << "???????? ???: \n";
-    cout << "1. ??????? ?-??? ??????? \n";
-    cout << "2. ??????? ?????? \n";
-    cout << "3. ??????? ????? \n";
-    cout << "4. ?????? ????? \n";
-    cout << "5. ???????? ????? \n";
-    cout << "??????? ????? ???: \n";
+    cout << "Виберіть дію: \n";
+    cout << "1. Змінити к-сть адмінів \n";
+    cout << "2. Змінити пароль \n";
+    cout << "3. Поточні події \n";
+    cout << "4. Минулі події \n";
+    cout << "5. Майбутні події \n";
+    cout << "Введіть номер дії: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "??????? ???? ????????? ??????? \n";
+        cout << "Введіть нову кількість адмінів \n";
         cin >> admins_count;
         admins.workers_count = admins_count;
     }
     else if (answer == 2) {
-        cout << "??????? ????? ??????: \n";
+        cout << "Введіть новий пароль: \n";
         cin >> password_answer;
         password = password_answer;
-        cout << "????? ??????: " + password;
+        cout << "Новий пароль: " + password;
     }
     else if (answer == 3) {
         cout << random_action() + "\n";
@@ -305,76 +370,76 @@ int seller(list<string>& items, int& bal, int& milk, int& bread, int& butter, in
     sellers.workers_count = 5;
     int count, choose_item, answer;
     int i = 0;
-    cout << "???????? ???: \n";
-    cout << "1. ??????? ?-??? ??????? \n";
-    cout << "2. ??????? ?????? \n";
-    cout << "??????? ????? ???: \n";
+    cout << "Виберіть дію: \n";
+    cout << "1. Змінити к-сть адмінів \n";
+    cout << "2. Змінити пароль \n";
+    cout << "Введіть номер дії: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "???????? ????? ??? ???????: \n";
+        cout << "Виберіть товар для продажі: \n";
         for (string item : items) {
             i++;
             cout << i << ". " << item << "\n";
         }
         cin >> choose_item;
-        cout << "??????? ????????? ?????? : \n";
+        cout << "Введіть кількість товару : \n";
         cin >> count;
         if (choose_item == 1) {
             if (count <= milk_user) {
                 shop_bal += (90 * count);
                 milk -= count;
-                cout << "???????? ??????! \n  ?????? ????????: " + shop_bal;
+                cout << "Успішний продаж! \n  Баланс магазину: " + shop_bal;
             }
             else {
-                cout << "??????????? ??????! \n ?????? ????????: " + shop_bal;
+                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
             }
         }
         else if (choose_item == 2) {
             if (count <= bread) {
                 shop_bal += (20 * count);
                 bread -= count;
-                cout << "???????? ??????! \n  ?????? ????????: " + shop_bal;
+                cout << "Успішний продаж! \n  Баланс магазину: " + shop_bal;
             }
             else {
-                cout << "??????????? ??????! \n ?????? ????????: " + shop_bal;
+                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
             }
         }
         else if (choose_item == 3) {
             if (count <= bread) {
                 shop_bal += (90 * count);
                 butter -= count;
-                cout << "???????? ??????! \n ?????? ????????: " + shop_bal;
+                cout << "Успішний продаж! \n Баланс магазину: " + shop_bal;
             }
             else {
-                cout << "??????????? ??????! \n ?????? ????????: " + shop_bal;
+                cout << "Недостатньо товару! \n Баланс магазину: " + shop_bal;
             }
         }
         else {
-            cout << "???????? ?????";
+            cout << "Невірний товар";
         }
     }
     else if (answer == 2) {
         int item_choose, item_choose2;
-        cout << "???????? ?????? ????? ??? ??????: \n";
+        cout << "Виберіть перший товар для обміну: \n";
         for (string item : items) {
             i++;
             cout << i << ". " << item << "\n";
         }
         cin >> item_choose;
-        cout << "???????? ?????? ????? ??? ??????: \n";
+        cout << "Виберіть другий товар для обміну: \n";
         cin >> item_choose2;
         if (item_choose == 1 && item_choose == 2) {
             if (milk > 1) {
                 milk -= 1;
                 bread += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
         }
         else if (item_choose == 1 && item_choose == 3) {
             if (milk > 1) {
                 milk -= 1;
                 butter += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
 
         }
@@ -382,32 +447,32 @@ int seller(list<string>& items, int& bal, int& milk, int& bread, int& butter, in
             if (bread > 1) {
                 bread -= 1;
                 milk += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
         }
         else if (item_choose == 2 && item_choose == 3) {
             if (bread > 1) {
                 bread -= 1;
                 butter += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
         }
         else if (item_choose == 3 && item_choose == 1) {
             if (butter > 1) {
                 butter -= 1;
                 milk += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
         }
         else if (item_choose == 3 && item_choose == 2) {
             if (butter > 1) {
                 butter -= 1;
                 bread += 1;
-                cout << "???????? ?????!";
+                cout << "Успішний обмін!";
             }
         }
         else {
-            cout << "???????? ???? ? ???????!";
+            cout << "Невірний один з товарів!";
         }
     }
 
@@ -419,16 +484,16 @@ string random_action_guardian() {
     int random = rand() % 3;
     string action;
     if (random == 0) {
-        action = "????????";
+        action = "Крадіжка";
     }
     else if (random == 1) {
-        action = "??????????? ??????";
+        action = "Пошкодження товару";
     }
     else if (random == 2) {
-        action = "?????";
+        action = "Напад";
     }
     else if (random == 3) {
-        action = "?????? ?? ????????????";
+        action = "Нічого не відбувається";
     }
     return action;
 }
@@ -446,14 +511,14 @@ int guardian() {
     int answer;
 
     guardians.workers_count = 3;
-    cout << "???????? ???: \n";
-    cout << "1. ?????????? ?? ??????? \n";
-    cout << "2. ??????????? ???????? \n";
+    cout << "Виберіть дію: \n";
+    cout << "1. Слідкувати за подіями \n";
+    cout << "2. Переглядати ситуації \n";
 
-    cout << "??????? ????? ???: \n";
+    cout << "Введіть номер дії: \n";
     cin >> answer;
     if (answer == 1) {
-        cout << "?? ????????? ?? ???????! \n";
+        cout << "Ви слідкуєте за подіями! \n";
     }
     else if (answer == 2) {
         cout << random_action_guardian() + "\n";
@@ -462,4 +527,3 @@ int guardian() {
     main();
     return 0;
 }
-
